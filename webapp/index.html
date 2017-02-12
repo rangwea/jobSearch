@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+<title>基于Lucene的Web信息抽取系统</title>
+<link href="css/2.css" media="all" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+<script>
+function reJob(){
+	$.get("/jobInfo_reCreateIndex.action?date="+new Date(), function(data){
+		  if(data.indexOf("no_login")==0){
+			  window.location.href='login.html';
+		  }else if(data.indexOf("success")>=0){
+		  	  alert("重建索引成功！");
+		  }else{
+			  alert("重建索引失败！");
+		  }
+	  });
+}
+
+function reEmployment(){
+	$.get("/employmentInfo_reCreateIndex.action?date"+new Date(), function(data){
+		  if(data.indexOf("no_login")==0){
+			  window.location.href='login.html';
+		  }else if(data.indexOf("success")>=0){
+		  	  alert("重建索引成功！");
+		  }else{
+			  alert("重建索引失败！");
+		  }
+	  });
+}
+
+function spiderJobData(){
+	$.get("/spider_spiderJobInfo.action?date"+new Date(), function(data){
+		  if(data.indexOf("no_login")==0){
+			  window.location.href='login.html';
+		  }else{
+			  alert("爬取职位信息成功！");
+		  }
+	  });
+}
+
+function spiderEmploymentData(){
+	$.get("/spider_spiderEmploymentInfo.action?date"+new Date(), function(data){
+		  if(data.indexOf("no_login")==0){
+			  window.location.href='login.html';
+		  }else{
+			  alert("爬取就业信息成功！");
+		  }
+	});
+}
+
+function stopSpider(){
+	$.get("spider_stopSpider.action?date"+new Date(), function(data){
+		 if(data.indexOf("success")==0){
+			alert("停止当前spider成功！");
+		 }
+	});
+}
+</script>
+</head>
+
+<body>
+<div class="static_header" style="text-align: right;padding:5px">
+	 <a class="btn" onclick="stopSpider();" href="javascript:;">停止</a>
+	<div class="btn-group">
+	  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	   	爬取信息
+	    <span class="caret"></span>
+	  </a>
+	  <ul class="dropdown-menu" style="width:40px">
+	    <li><a onclick="spiderJobData();" style="text-align: left;">职位信息</a></li>
+	    <li><a onclick="spiderEmploymentData();" style="text-align: left;">就业信息</a></li>
+	  </ul>
+	</div>
+	<div class="btn-group">
+	  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	   	 重建索引
+	    <span class="caret"></span>
+	  </a>
+	  <ul class="dropdown-menu" style="width:40px">
+	    <li><a onclick="reJob();" style="text-align: left;">职位信息</a></li>
+	    <li><a onclick="reEmployment();" style="text-align: left;">就业信息</a></li>
+	  </ul>
+	</div>
+</div>
+
+<div style="text-align: center;padding-top:60px;">
+	<div class="hero_text">
+		<div class="hero_title active">就业信息检索</div>
+	</div>
+	<div class="hero_search">
+		<div class="hero_search_tabs search_tabs">
+			<a class="hero_search_tab search_tab selected" href="/jobInfo.action" id="hero_search_address">职位信息</a>
+			<a class="hero_search_tab search_tab" href="/employmentInfo.action" id="hero_search_address">就业帮助信息</a>
+		</div>
+		<form class="form-search" action="jobInfo.action">
+			<div class="input-append" style="margin-top:10px;">
+				关键字：<input class="input-xxlarge" type="text" style="height:40px;" name="qo.keyWords"/>
+				<button type="submit" class="btn" style="height:40px;">Search</button>
+			</div>
+		</form>
+	</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="login" namespace="/" extends="struts-default">
+		<action name="login_*" method="{1}" class="cn.hrg.cd.web.action.LoginAction">
+			<result>/WEB-INF/views/commons/success.html</result>
+			<result name="error">/WEB-INF/views/commons/error.html</result>
+		</action>
+	</package>
+</struts>

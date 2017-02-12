@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="spider" namespace="/" extends="struts-default">
+		<action name="spider_*" method="{1}" class="cn.hrg.cd.web.action.SpiderAction">
+			<result name="success">/WEB-INF/views/commons/success.html</result>
+			<result name="message">/WEB-INF/views/commons/message.jsp</result>
+			<result name="error">/WEB-INF/views/commons/error.html</result>
+			<result name="login">login1.html</result>
+		</action>
+	</package>
+</struts>
